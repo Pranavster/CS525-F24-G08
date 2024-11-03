@@ -1,30 +1,30 @@
-# Compiler to use
 CC = gcc
-
-# Compiler flags
-CFLAGS = -Wall -g
+CFLAGS = -g -Wall
 
 # List of source files
-SRCS = storage_mgr.c dberror.c test_assign1_1.c
+SRC_FILES = buffer_mgr_stat.c buffer_mgr.c dberror.c expr.c record_mgr.c rm_serializer.c storage_mgr.c
+TEST_FILES = test_assign3_1.c test_expr.c
 
-# List of object files (replace .c with .o)
-OBJS = $(SRCS:.c=.o)
+# Object files
+OBJ_FILES = $(SRC_FILES:.c=.o)
+TEST_OBJ = $(TEST_FILES:.c=.o)
 
-# Executable name
-TARGET = test_assign1
+# Targets
+all: clean test_assign3_1 test_expr
 
-# Default target to create the executable
-all: $(TARGET)
-
-# Rule to link object files and create the executable
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
-
-# Rule to compile source files into object files
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean target to remove object files and the executable
-clean:
-	rm -f $(OBJS) $(TARGET)
+test_assign3_1: test_assign3_1.o $(OBJ_FILES)
+	$(CC) $(CFLAGS) $^ -o $@
 
+test_expr: test_expr.o $(OBJ_FILES)
+	$(CC) $(CFLAGS) $^ -o $@
+
+Interface: Interface.o $(OBJ_FILES)
+	$(CC) $(CFLAGS) $^ -o $@
+
+clean:
+	rm -f *.o test_assign3_1 test_expr
+
+.PHONY: all clean

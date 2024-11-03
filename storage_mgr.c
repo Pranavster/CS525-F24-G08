@@ -24,7 +24,7 @@ RC createPageFile(char *fileName)
         return RC_FILE_NOT_FOUND;
     if(fwrite(emptyPage, sizeof(char), PAGE_SIZE, file)<PAGE_SIZE)
     {
-        RC_WRITE_FAILED;
+       return RC_WRITE_FAILED;
     }
     free(emptyPage);//free memory of emptyPage
     //fHandle->totalNumPages+=1;//notify the total number of pages has increased
@@ -41,7 +41,7 @@ RC openPageFile(char *fileName, SM_FileHandle *fHandle)
     fHandle->curPagePos = 0;
     fseek(file, 0, SEEK_END);//move the file pointer to the end of the file
     long int totalFileSize = ftell(file);//get the total size of the file
-    printf("\nFile size:%ld\n",totalFileSize);
+    //printf("\nFile size:%ld\n",totalFileSize);
     fHandle->totalNumPages = totalFileSize / PAGE_SIZE;//get the total number of pages
     fHandle->mgmtInfo = file;
     return RC_OK;
@@ -50,12 +50,12 @@ RC closePageFile(SM_FileHandle *fHandle)
 {
     if(fHandle->mgmtInfo == NULL)//if the file is non existent or closing it did not work, return RC_FILE_HANDLE_NOT_INIT or RC_FILE_NOT_FOUND, respectively
     {
-        printf("Null management Info");
+        //printf("Null management Info");
         return RC_FILE_HANDLE_NOT_INIT;
     }
     else if(fclose((FILE *)(fHandle->mgmtInfo))!=0)//closes the file
     {
-        printf("Null management Info");
+        //printf("Null management Info");
         return RC_FILE_NOT_FOUND;
     }
     fHandle->mgmtInfo = NULL;
@@ -243,7 +243,7 @@ extern RC writeBlock(int PageNum, SM_FileHandle *fHandle, SM_PageHandle memPage)
 
 extern RC writeCurrentBlock(SM_FileHandle *fHandle, SM_PageHandle memPage)
 {
-    // int currentPageNumber = fHandle->curPagePos / PAGE_SIZE;   //Determine the current page's index by using the file position as a guide
+    //int currentPageNumber = fHandle->curPagePos / PAGE_SIZE;   //Determine the current page's index by using the file position as a guide
 
     char *bufferPtr = memPage;   //Set bufferPtr to point to the start of memPage
     FILE *fgroup8 = fopen(fHandle->fileName, "r+");   //use the read/write mode to open the file
@@ -264,22 +264,20 @@ extern RC writeCurrentBlock(SM_FileHandle *fHandle, SM_PageHandle memPage)
 
 extern RC appendEmptyBlock(SM_FileHandle *fHandle)
 {
-    SM_PageHandle emptyBlock = (SM_PageHandle)calloc(PAGE_SIZE, sizeof(char));   //Set memory to zero and allocate space for a data page
-    char *blockPtr = emptyBlock;   //Assign blockPtr to the start of the recently allocated memory block
-    FILE *fgroup8 = fopen(fHandle->fileName, "r+");   //use the read/write mode to open the file
-    for (int index = 0; index < PAGE_SIZE; index++)
-    {
-       if (fputc(0, fgroup8) == EOF)   //In order to detect write failures, write a zero byte to the file
-       {
-          free(emptyBlock);
-          return RC_WRITE_FAILED;   //In order to signal the write failure, return an error code
-       }
-       blockPtr++;
-    }
-    fHandle->totalNumPages++;   // Increase the file handle's total amount of pages
-    free(emptyBlock);
+     SM_PageHandle emptyBlock = (SM_PageHandle)calloc(PAGE_SIZE, sizeof(char));   //Set memory to zero and allocate space for a data page
+     FILE *fgroup8 = fopen(fHandle->fileName, "r+");   //use the read/write mode to open the file
+     for (int index = 0; index < PAGE_SIZE; index++)
+     {
+         if (fputc(0, fgroup8) == EOF)   //In order to detect write failures, write a zero byte to the file
+         {
+             free(emptyBlock);
+             return RC_WRITE_FAILED;   //In order to signal the write failure, return an error code
+         }
+     }
+     fHandle->totalNumPages++;   // Increase the file handle's total amount of pages
+     free(emptyBlock);
 
-    return RC_OK;
+     return RC_OK;
 }
 
 extern RC ensureCapacity(int numberOfPages, SM_FileHandle *fHandle)
@@ -317,25 +315,25 @@ extern RC ensureCapacity(int numberOfPages, SM_FileHandle *fHandle)
     RC opf2_result = openPageFile("sharandeep.txt",&fHandle2);
     if(opf1_result==RC_OK)
     {
-        printf("File successfully opened");
-        printf("Filename %s\n",fHandle1.fileName);
-        printf("Current page position %d\n",fHandle1.curPagePos);
-        printf("Total amount of pages %d\n",fHandle1.totalNumPages);
+        //printf("File successfully opened");
+        //printf("Filename %s\n",fHandle1.fileName);
+        //printf("Current page position %d\n",fHandle1.curPagePos);
+        //printf("Total amount of pages %d\n",fHandle1.totalNumPages);
     }
     else
     {
-        printf("File unsuccessfully opened, result is %d\n",opf1_result);
+        //printf("File unsuccessfully opened, result is %d\n",opf1_result);
     }
     if(opf2_result==RC_OK)
     {
-        printf("File successfully opened");
-        printf("Filename %s\n",fHandle2.fileName);
-        printf("Current page position %d\n",fHandle2.curPagePos);
-        printf("Total amount of pages %d\n",fHandle2.totalNumPages);
+        //printf("File successfully opened");
+        //printf("Filename %s\n",fHandle2.fileName);
+        //printf("Current page position %d\n",fHandle2.curPagePos);
+        //printf("Total amount of pages %d\n",fHandle2.totalNumPages);
     }
     else
     {
-        printf("File unsuccessfully opened, result is %d\n",opf2_result);
+        //printf("File unsuccessfully opened, result is %d\n",opf2_result);
     }
-    printf("%d",getBlockPos(&fHandle2));
+    //printf("%d",getBlockPos(&fHandle2));
 }*/

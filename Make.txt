@@ -1,0 +1,44 @@
+# Compiler and flags
+CC = gcc
+CFLAGS = -Wall -g
+
+# Target names
+TARGET_ASSIGN3 = test_assign3
+TARGET_EXPR = test_expr
+TARGET_TOMBSTONE = test_tombstone
+
+# Source files for the targets
+SRCS_ASSIGN3 = test_assign3_1.c storage_mgr.c buffer_mgr.c record_mgr.c dberror.c expr.c rm_serializer.c
+SRCS_EXPR = test_expr.c storage_mgr.c buffer_mgr.c record_mgr.c dberror.c expr.c rm_serializer.c
+SRCS_TOMBSTONE = test_expr.c storage_mgr.c buffer_mgr.c record_mgr.c dberror.c expr.c rm_serializer.c
+
+# Object files (automatically generated from SRCS)
+OBJS_ASSIGN3 = $(SRCS_ASSIGN3:.c=.o)
+OBJS_EXPR = $(SRCS_EXPR:.c=.o)
+OBJS_TOMBSTONE = $(SRCS_TOMBSTONE:.c=.o)
+
+# Include directories (if needed)
+INCLUDES = -I.
+
+# Default target: build both binaries
+all: $(TARGET_ASSIGN3) $(TARGET_EXPR) $(TARGET_TOMBSTONE)
+
+# Compile test_assign3
+$(TARGET_ASSIGN3): $(OBJS_ASSIGN3)
+	$(CC) $(CFLAGS) -o $(TARGET_ASSIGN3) $(OBJS_ASSIGN3) $(INCLUDES)
+
+# Compile test_expr
+$(TARGET_EXPR): $(OBJS_EXPR)
+	$(CC) $(CFLAGS) -o $(TARGET_EXPR) $(OBJS_EXPR) $(INCLUDES)
+	
+# Compile test_tombstone
+$(TARGET_TOMBSTONE): $(OBJS_TOMBSTONE)
+	$(CC) $(CFLAGS) -o $(TARGET_TOMBSTONE) $(OBJS_TOMBSTONE) $(INCLUDES)
+
+# Pattern rule for object files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< $(INCLUDES)
+
+# Clean target to remove binaries and object files
+clean:
+	rm -f $(OBJS_ASSIGN3) $(OBJS_EXPR) $(TARGET_ASSIGN3) $(TARGET_EXPR) $(TARGET_TOMBSTONE)

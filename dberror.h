@@ -27,6 +27,11 @@ typedef int RC;
 #define RC_IM_N_TO_LAGE 302
 #define RC_IM_NO_MORE_ENTRIES 303
 
+
+#define RC_RM_NO_TUPLE_WITH_GIVEN_RID 600
+#define RC_ERROR 602
+#define RC_SCAN_CONDITION_NOT_FOUND 601
+
 /* holder for error messages */
 extern char *RC_message;
 

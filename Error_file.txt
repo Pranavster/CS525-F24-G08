@@ -1,0 +1,73 @@
+gcc -Wall -g -o test_assign3 test_assign3_1.o record_mgr.o dberror.o expr.o -I.
+/usr/bin/ld: test_assign3_1.o: in function `testRecords':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:108: undefined reference to `stringToValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:112: undefined reference to `stringToValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:116: undefined reference to `stringToValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:120: undefined reference to `stringToValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:122: undefined reference to `stringToValue'
+/usr/bin/ld: test_assign3_1.o: in function `testCreateTableAndInsert':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:174: undefined reference to `serializeValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:174: undefined reference to `serializeValue'
+/usr/bin/ld: test_assign3_1.o: in function `testMultipleScans':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:227: undefined reference to `stringToValue'
+/usr/bin/ld: test_assign3_1.o: in function `testUpdateTable':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:339: undefined reference to `serializeValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:339: undefined reference to `serializeValue'
+/usr/bin/ld: test_assign3_1.o: in function `testInsertManyRecords':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:400: undefined reference to `serializeValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:400: undefined reference to `serializeValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:407: undefined reference to `serializeValue'
+/usr/bin/ld: test_assign3_1.o:/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:407: more undefined references to `serializeValue' follow
+/usr/bin/ld: test_assign3_1.o: in function `testScans':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:469: undefined reference to `stringToValue'
+/usr/bin/ld: test_assign3_1.o: in function `testScansTwo':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:555: undefined reference to `stringToValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:562: undefined reference to `serializeValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:562: undefined reference to `serializeValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:569: undefined reference to `stringToValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:576: undefined reference to `serializeValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:576: undefined reference to `serializeValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:577: undefined reference to `serializeRecord'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:584: undefined reference to `stringToValue'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/test_assign3_1.c:591: undefined reference to `serializeRecord'
+/usr/bin/ld: record_mgr.o: in function `initRecordManager':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:53: undefined reference to `initStorageManager'
+/usr/bin/ld: record_mgr.o: in function `createTable':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:102: undefined reference to `initBufferPool'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:109: undefined reference to `createPageFile'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:113: undefined reference to `openPageFile'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:142: undefined reference to `writeBlock'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:158: undefined reference to `closePageFile'
+/usr/bin/ld: record_mgr.o: in function `openTable':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:166: undefined reference to `pinPage'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:202: undefined reference to `unpinPage'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:205: undefined reference to `forceFlushPool'
+/usr/bin/ld: record_mgr.o: in function `closeTable':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:212: undefined reference to `shutdownBufferPool'
+/usr/bin/ld: record_mgr.o: in function `deleteTable':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:225: undefined reference to `destroyPageFile'
+/usr/bin/ld: record_mgr.o: in function `insertRecord':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:244: undefined reference to `pinPage'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:256: undefined reference to `markDirty'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:261: undefined reference to `unpinPage'
+/usr/bin/ld: record_mgr.o: in function `deleteRecord':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:276: undefined reference to `pinPage'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:285: undefined reference to `markDirty'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:290: undefined reference to `unpinPage'
+/usr/bin/ld: record_mgr.o: in function `updateRecord':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:308: undefined reference to `pinPage'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:320: undefined reference to `markDirty'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:326: undefined reference to `unpinPage'
+/usr/bin/ld: record_mgr.o: in function `getRecord':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:346: undefined reference to `pinPage'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:358: undefined reference to `unpinPage'
+/usr/bin/ld: record_mgr.o: in function `next':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:447: undefined reference to `pinPage'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:461: undefined reference to `unpinPage'
+/usr/bin/ld: /mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:465: undefined reference to `unpinPage'
+/usr/bin/ld: record_mgr.o: in function `closeScan':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:515: undefined reference to `unpinPage'
+/usr/bin/ld: record_mgr.o: in function `getRecordSize':
+/mnt/c/IIT/Seventh_Semester/CS_525/Assignments/assign3_record_manager/assign3_record_manager/record_mgr.c:542: undefined reference to `len'
+collect2: error: ld returned 1 exit status
+make: *** [Makefile:25: test_assign3] Error 1
