@@ -27,6 +27,14 @@ typedef int RC;
 #define RC_IM_N_TO_LAGE 302
 #define RC_IM_NO_MORE_ENTRIES 303
 
+// Added new definitions for Record Manager
+#define RC_RM_NO_TUPLE_WITH_GIVEN_RID 600
+#define RC_SCAN_CONDITION_NOT_FOUND 601
+#define RC_ERROR 404
+#define RC_PINNED_PAGES_IN_BUFFER 143
+
+// BTree error
+#define RC_MEMORY_ALLOCATION_ERROR 400
 /* holder for error messages */
 extern char *RC_message;
 

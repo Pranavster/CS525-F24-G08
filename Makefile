@@ -1,30 +1,41 @@
-# Compiler to use
 CC = gcc
+CFLAGS  = -g -Wall 
+ 
+default:test
 
-# Compiler flags
-CFLAGS = -Wall -g
+btree_mgr.o:btree_mgr.c btree_mgr.h
+	$(CC) $(CFLAGS) -c btree_mgr.c -lm
 
-# List of source files
-SRCS = storage_mgr.c dberror.c test_assign1_1.c
+record_mgr.o:record_mgr.c record_mgr.h
+	$(CC) $(CFLAGS) -c record_mgr.c -lm
 
-# List of object files (replace .c with .o)
-OBJS = $(SRCS:.c=.o)
+buffer_mgr.o: buffer_mgr.c buffer_mgr.h
+	$(CC) $(CFLAGS) -c buffer_mgr.c -lm
 
-# Executable name
-TARGET = test_assign1
+buffer_mgr_stat.o: buffer_mgr_stat.c buffer_mgr_stat.h
+	$(CC) $(CFLAGS) -c buffer_mgr_stat.c -lm
 
-# Default target to create the executable
-all: $(TARGET)
+storage_mgr.o: storage_mgr.c storage_mgr.h 
+	$(CC) $(CFLAGS) -c storage_mgr.c -lm
 
-# Rule to link object files and create the executable
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+dberror.o: dberror.c dberror.h 
+	$(CC) $(CFLAGS) -c dberror.c
 
-# Rule to compile source files into object files
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+expr.o: expr.c expr.h 
+	$(CC) $(CFLAGS) -c expr.c
 
-# Clean target to remove object files and the executable
-clean:
-	rm -f $(OBJS) $(TARGET)
+test_expr.o:
+	$(CC) $(CFLAGS) -o test_expr.o -c test_expr.c
 
+test_assign4_1.o: test_assign4_1.c dberror.h expr.h storage_mgr.h buffer_mgr.h record_mgr.h btree_mgr.h tables.h buffer_mgr_stat.h test_helper.h rm_serializer.c 
+	$(CC) $(CFLAGS) -c test_assign4_1.c -lm
+
+test: test_assign4_1.o storage_mgr.o dberror.o buffer_mgr.o buffer_mgr_stat.o record_mgr.o btree_mgr.o expr.o test_expr.o rm_serializer.c
+	$(CC) $(CFLAGS) -o test_assign4_1 test_assign4_1.o storage_mgr.o dberror.o buffer_mgr.o buffer_mgr_stat.o record_mgr.o btree_mgr.o expr.o rm_serializer.c -lm
+
+clean: 
+	$(RM) -r test_assign4_1 *.o *~ test_expr *.dSYM
+
+
+run_test:	
+	./test_assign4_1
