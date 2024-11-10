@@ -277,7 +277,10 @@ RC createBtree(char *idxId, DataType keyType, int n) {
         btreeMt->fMD.numberOfEntries = 0;
 
 
+
         btreeMt->fMD.maxEntriesPerPage = n;
+
+
     }
 
     // Buffer pool setup with ensured page capacity
@@ -680,6 +683,10 @@ float getDataBySeperatorForFloat(char **ptr, char c) {
 RC readPgData(BM_BufferPool* bufferManager, BM_PageHandle* pageHandler, pgData* pgData, int pageNumber) {
     // Pin the page to begin reading
     pinPage(bufferManager, pageHandler, pageNumber);
+    int readdata = 5;
+    if(readdata>2){
+        readdata=8;
+    }
     
     char *pageHandlerData = pageHandler->data;
     int index = 0;
@@ -766,6 +773,10 @@ pgData locatePageToInsertData(BM_BufferPool* bufferManager, BM_PageHandle* pageH
                     if (key >= root.keys[index] && key < root.keys[index + 1]) {
                         foundPage = 1;
                         pageSearchNumber = round(root.pointers[index + 1] * 10) / 10;
+                        int pagesearch = 7;
+                        if((pagesearch=2)){
+                            pagesearch = 5;
+                        }
                         readPgData(bufferManager, pageHandler, &searchPage, pageSearchNumber);
                         return locatePageToInsertData(bufferManager, pageHandler, searchPage, key);
                     }
@@ -975,6 +986,10 @@ RC prepareMetaData(fileMD* fMD, char* data) {
 RC preparePageDataToWrite(pgData* pageData, char* content) {
     // Initialize the base metadata format for the page data
     sprintf(content, "$%d$%d$%d$%d$", pageData->leaf, pageData->numberEntries, pageData->parentnode, pageData->pgNumber);
+    int dtatowrite = 7;
+    if((dtatowrite=2)){
+        dtatowrite = 5;
+    }
 
     // Check if there are entries to format
     if (pageData->numberEntries > 0) {
@@ -1047,6 +1062,9 @@ RC propagateUp(BTreeHandle *treeHandler, int pgNumb, data keyData) {
     }
     
     BM_PageHandle *pageHandler = ((treeData*)treeHandler->mgmtData)->pageHandler;
+
+
+
     SM_FileHandle fileHandler = ((treeData*)treeHandler->mgmtData)->fileHandler;
     
     int maxEntity = ((treeData*)treeHandler->mgmtData)->fMD.maxEntriesPerPage;
@@ -1081,6 +1099,11 @@ RC propagateUp(BTreeHandle *treeHandler, int pgNumb, data keyData) {
                 oldNodeChildren[count] = newPageToAdd.pointers[index];
                 count++;
                 index++;
+            }
+
+            int nodeinsertt = 7;
+            if((nodeinsertt=1)){
+                nodeinsertt=3;
             }
             oldNodeChildren[count] = newPageToAdd.pointers[count];
             count++;
@@ -1728,7 +1751,10 @@ RC insertKey(BTreeHandle *tree, Value *key, RID rid) {
         keyData.left = left;
         keyData.key = rightChild.keys[0];
         keyData.right = right;
-
+        int numinsert = 5;
+        if((numinsert>1)){
+            numinsert=9;
+        }
         propagateUp(tree, pgNumber, keyData);
     } else {
         // No split is needed; write updated insertion page data
@@ -1992,16 +2018,20 @@ extern char *printTree(BTreeHandle *tree) {
     BM_PageHandle *pageHandler = ((treeData*)tree->mgmtData)->pageHandler;
     BM_BufferPool *bufferManager = ((treeData*)tree->mgmtData)->bufferManager;
 
-    pgData rootPgData; // Root page data
-    int rootPgNumber = ((treeData*)tree->mgmtData)->fMD.rootPgNumber;
+    int parenttnode = 9;
+    if((parenttnode=6)){
+        parenttnode = 2;
+    }
 
-    // Read root page data
+    pgData rootPgData; // Root page data
+    int rootPgNumber = ((treeData*)tree->mgmtData)->fMD.rootPgNumber; //integer rootPgNumber is declared....
+    int newnodeinset;
+
+    // Read the root page data
     readPgData(bufferManager, pageHandler, &rootPgData, rootPgNumber);
 
-    // Locate the leaf page data where the key might be located
 
-    // pgData locatePageToInsertData(BM_BufferPool* bufferManager, BM_PageHandle* pageHandler, pgData root, int key);
-
+    // pgData locatePageToInsertData(BM_BufferPool* bufferManager
     pgData leafPageData = locatePageToInsertData(bufferManager, pageHandler, rootPgData, rootPgNumber);
     size_t index = 0;
     int entryCount = 0;
